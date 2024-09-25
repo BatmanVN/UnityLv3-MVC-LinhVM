@@ -11,21 +11,14 @@ public class HorseManager : MonoBehaviour
     [SerializeField] private GameObject[] cameras;
     [SerializeField] private GameObject[] boards;
     [SerializeField] private GameObject vFx;
+    [SerializeField] private AudioSource music;
     [SerializeField] private float time;
     [SerializeField] private UnityEvent onDistance;
     [SerializeField] private int countFinish;
     private void Start()
     {
-        StartCoroutine(DelayStart());
+        music.Play();
         countFinish = horses.Count;
-    }
-    private IEnumerator DelayStart()
-    {
-        yield return new WaitForSeconds(time);
-        foreach (Horse horse in horses)
-        {
-            horse.StartRun();
-        }
     }
     private void SortLeaderBoard()
     {
@@ -61,11 +54,11 @@ public class HorseManager : MonoBehaviour
             leaderBoard[1].DisplayLeader(horses);
         }
     }
-    private void ChangeSpeed()
+    private void StartRun()
     {
         foreach (Horse horse in horses)
         {
-            horse.ChangeSpeed();
+            horse.StartRun();
         }
     }
     private void CheckFinish()
@@ -86,7 +79,7 @@ public class HorseManager : MonoBehaviour
     }
     private void Update()
     {
-        ChangeSpeed();
+        StartRun();
         onDistance?.Invoke();
         SortLeaderBoard();
         IndentifyFirstFinish();
