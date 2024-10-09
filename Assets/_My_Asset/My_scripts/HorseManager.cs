@@ -15,6 +15,7 @@ public class HorseManager : MonoBehaviour
     [SerializeField] private float time;
     [SerializeField] private UnityEvent onDistance;
     [SerializeField] private int countFinish;
+    private Coroutine statusBoard;
     private void Start()
     {
         music.Play();
@@ -40,9 +41,13 @@ public class HorseManager : MonoBehaviour
                 cameras[1].SetActive(true);
                 vFx.SetActive(true);
                 CheckFinish();
-                Time.timeScale = 0.5f;
+                Time.timeScale = 0.3f;
             }
             break;
+        }
+        if (horses[0].Isfinished && distance.MetterRemain <=0)
+        {
+            distance.MetterRemain = 0;
         }
     }
     private IEnumerator StatusBoard()
@@ -53,6 +58,7 @@ public class HorseManager : MonoBehaviour
             boards[i].SetActive(i == 2);
             leaderBoard[1].DisplayLeader(horses);
         }
+        StopCoroutine(StatusBoard());
     }
     private void StartRun()
     {
@@ -74,7 +80,9 @@ public class HorseManager : MonoBehaviour
         }
         if (countFinish <= 0)
         {
-           StartCoroutine(StatusBoard());
+           statusBoard = StartCoroutine(StatusBoard());
+           countFinish = 0;
+            this.enabled = false;
         }
     }
     private void Update()

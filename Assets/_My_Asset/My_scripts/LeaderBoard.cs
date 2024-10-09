@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class LeaderBoard : MonoBehaviour
 {
     [SerializeField] private List<Text> nameTexts;
-    //[SerializeField] private List<Horse> horses;
     public void DisplayLeader(List<Horse> horses)
     {
         for (int i = 0; i < nameTexts.Count; i++)

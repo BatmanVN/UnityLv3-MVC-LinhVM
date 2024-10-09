@@ -18,7 +18,7 @@ public class Horse : MonoBehaviour
 
     private void Start()
     {
-        speed = Random.Range(40, 50);
+        speed = Random.Range(60, 75);
         currentPoint = transform.position.z;
         moveDirection *= speed;
     }
@@ -69,7 +69,7 @@ public class Horse : MonoBehaviour
     private IEnumerator RandomSpeed()
     {
          yield return new WaitForEndOfFrame();
-         speed = Random.Range(50, 70);  
+         speed = Random.Range(85, 105);  
     }
     private void Update()
     {
