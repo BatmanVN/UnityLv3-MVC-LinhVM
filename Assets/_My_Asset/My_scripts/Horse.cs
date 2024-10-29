@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Horse : MonoBehaviour
 {
     private const string runParaname = "run";
-    [SerializeField] private AudioSource[] horseAudio;
     [SerializeField] private Animator horseAnim;
     [SerializeField] private Rigidbody horseRig;
     [SerializeField] private Vector3 moveDirection;

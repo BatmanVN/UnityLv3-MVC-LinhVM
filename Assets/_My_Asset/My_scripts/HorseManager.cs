@@ -11,14 +11,14 @@ public class HorseManager : MonoBehaviour
     [SerializeField] private GameObject[] cameras;
     [SerializeField] private GameObject[] boards;
     [SerializeField] private GameObject vFx;
-    [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource[] audios;
     [SerializeField] private float time;
     [SerializeField] private UnityEvent onDistance;
     [SerializeField] private int countFinish;
     private Coroutine statusBoard;
     private void Start()
     {
-        music.Play();
+        audios[2].Play();
         countFinish = horses.Count;
     }
     private void SortLeaderBoard()
@@ -65,6 +65,7 @@ public class HorseManager : MonoBehaviour
         foreach (Horse horse in horses)
         {
             horse.StartRun();
+            audios[0].Play();
         }
     }
     private void CheckFinish()
@@ -82,7 +83,7 @@ public class HorseManager : MonoBehaviour
         {
            statusBoard = StartCoroutine(StatusBoard());
            countFinish = 0;
-            this.enabled = false;
+           this.enabled = false;
         }
     }
     private void Update()
